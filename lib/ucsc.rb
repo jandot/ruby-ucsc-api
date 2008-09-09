@@ -30,5 +30,6 @@ Ucsc::Hg18::DBConnection.connect
 require File.dirname(__FILE__) + '/ucsc/hg18/activerecord.rb'
 require File.dirname(__FILE__) + '/ucsc/hg18/slice.rb'
 
-CNPS = [Dgv, CnpIafrate, CnpLocke, CnpRedon, CnpSebat, CnpSharp, CnpTuzun]
+ALL_CNPS = [Dgv, CnpIafrate, CnpLocke, CnpRedon, CnpSebat, CnpSharp, CnpTuzun]
 SEGDUPS = [GenomicSuperDup]
+ALL_REPEATS = [SimpleRepeat, ExaptedRepeat, InterruptedRepeat, Microsatellite]
