@@ -2,22 +2,35 @@
 require 'yaml'
 require '../lib/ucsc.rb'
 
-all_cnvs = Array.new
-[Dgv, CnpIafrate, CnpLocke, CnpRedon, CnpSebat, CnpSharp, CnpTuzun].each do |klass|
-  all_cnvs.push(klass.find_all_by_chrom('chrX'))
+ranges = Hash.new
+File.open('ranges.txt').each do |line|
+  line.chomp!
+  chromosome, start, stop = line.split(/\t/)
+  target_slice = Slice.new(chromosome, Range.new(start.to_i, stop.to_i))
+  if ! ranges.keys.include?(chromosome)
+    ranges[chromosome] = Array.new
+  end
+  ranges[chromosome].push(target_slice)
 end
 
-all_cnvs.flatten!
+ranges.keys.each do |chromosome|
+  all_annotations = Array.new
 
-File.open('ranges_chrX.txt').each do |line|
-  line.chomp!
-  start, stop = line.split(/\t/)
-  target_slice = Slice.new('chrX', Range.new(start.to_i, stop.to_i))
-  puts target_slice.to_s
-  all_cnvs.each do |cnv|
-    if cnv.slice.overlaps?(target_slice)
-      puts "\t" + cnv.to_s
+  ALL_CNPS.each do |klass|
+    all_annotations.push(klass.find_all_by_chrom(chromosome))
+  end
+
+  ALL_REPEATS.each do |klass|
+    all_annotations.push(klass.find_all_by_chrom(chromosome))
+  end
+  
+  all_annotations.flatten!
+
+  ranges[chromosome].each do |target_slice|
+    all_annotations.each do |annotation|
+      if annotation.slice.overlaps?(target_slice)
+        puts target_slice.to_s + "\t" + annotation.to_s
+      end
     end
   end
 end
-
