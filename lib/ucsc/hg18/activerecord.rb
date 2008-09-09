@@ -210,5 +210,26 @@ module Ucsc
       set_table_name 'simpleRepeat'
       set_primary_key nil
     end
+    
+    # = DESCRIPTION
+    # From Structural Variants description page when clicking the "Describe 
+    # table schema" in the table browser:
+    # "This track shows regions detected as putative genomic duplications 
+    # within the golden path. The following display conventions are used to 
+    # distinguish levels of similarity:
+    #   * Light to dark gray: 90 - 98% similarity
+    #   * Light to dark yellow: 98 - 99% similarity
+    #   * Light to dark orange: greater than 99% similarity
+    #   * Red: duplications of greater than 98% similarity that lack sufficient 
+    #   Segmental Duplication Database evidence (most likely missed overlaps) 
+    # For a region to be included in the track, at least 1 Kb of the total 
+    # sequence (containing at least 500 bp of non-RepeatMasked sequence) had 
+    # to align and a sequence identity of at least 90% was required."
+    class GenomicSuperDup < DBConnection
+      include Sliceable
+      
+      set_table_name 'genomicSuperDups'
+      set_primary_key nil
+    end
   end
 end
