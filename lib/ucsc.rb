@@ -29,3 +29,6 @@ Ucsc::Hg18::DBConnection.connect
 # Core modules
 require File.dirname(__FILE__) + '/ucsc/hg18/activerecord.rb'
 require File.dirname(__FILE__) + '/ucsc/hg18/slice.rb'
+
+CNPS = [Dgv, CnpIafrate, CnpLocke, CnpRedon, CnpSebat, CnpSharp, CnpTuzun]
+SEGDUPS = [GenomicSuperDup]
