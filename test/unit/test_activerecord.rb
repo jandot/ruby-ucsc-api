@@ -49,10 +49,30 @@ class SimpleRecordsTest < Test::Unit::TestCase
   def test_simple_repeats
     assert_equal('TAACCC', SimpleRepeat.find_by_chrom_and_chromStart('chr1', 0).sequence)
   end
+  
+  def test_genomic_super_dup
+    assert_equal('chr2:114046768', GenomicSuperDup.find_by_chrom_and_chromStart('chr1',465).name)
+  end
+  
+  def test_exapted_repeat
+    assert_equal(3180908, ExaptedRepeat.find_by_name('exap1').chromStart)
+  end
+  
+#  def test_repeatmasker
+#    
+#  end
+  
+  def test_interrupted_repeat
+    assert_equal('L2', InterruptedRepeat.find_by_chrom_and_chromStart('chr1',13687).name)
+  end
+  
+  def test_microsatellite
+    assert_equal('16xGT', Microsatellite.find_by_chrom_and_chromStart('chr1', 40344).name)
+  end
 end
 
 class MixinsTest < Test::Unit::TestCase
-  def test_cnp
+  def test_feature
     assert_equal(true, CnpIafrate.include?(Feature))
     assert_equal(true, CnpLocke.include?(Feature))
     assert_equal(true, CnpRedon.include?(Feature))

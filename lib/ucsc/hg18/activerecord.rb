@@ -205,7 +205,7 @@ module Ucsc
     # polymorphic. Repeat expansions are sometimes associated with specific 
     # diseases."
     class SimpleRepeat < DBConnection
-      include Sliceable
+      include Ucsc::Hg18::Feature
       
       set_table_name 'simpleRepeat'
       set_primary_key nil
@@ -226,10 +226,83 @@ module Ucsc
     # sequence (containing at least 500 bp of non-RepeatMasked sequence) had 
     # to align and a sequence identity of at least 90% was required."
     class GenomicSuperDup < DBConnection
-      include Sliceable
+      include Ucsc::Hg18::Feature
       
       set_table_name 'genomicSuperDups'
       set_primary_key nil
     end
+    
+    # = DESCRIPTION
+    # From Exapted Repeat description page when clicking the "Describe 
+    # table schema" in the table browser:
+    # "This track displays conserved non-exonic elements that have been 
+    # deposited by mobile elements (repeats), a process termed "exaptation" 
+    # (Gould et al., 1982). These regions were identified during a genome-wide 
+    # survey (Lowe et al., 2007) with the expectation that regions of this type 
+    # may act as distal transcriptional regulators for nearby genes. A previous 
+    # case study experimentally verified an exapted mobile element acting as a 
+    # distal enhancer (Bejerano et al. , 2006)."
+    class ExaptedRepeat < DBConnection
+      include Ucsc::Hg18::Feature
+      
+      set_table_name 'exaptedRepeats'
+      set_primary_key nil
+    end
+
+#TODO: The repeatmasker features are distributed over different tables; one for
+#      each chromosome.
+#    # = DESCRIPTION
+#    # From RepeatMasker description page when clicking the "Describe 
+#    # table schema" in the table browser:
+#    # "This track was created by using Arian Smit's RepeatMasker program, which 
+#    # screens DNA sequences for interspersed repeats and low complexity DNA 
+#    # sequences. The program outputs a detailed annotation of the repeats that 
+#    # are present in the query sequence, as well as a modified version of the 
+#    # query sequence in which all the annotated repeats have been masked. 
+#    # RepeatMasker uses the RepBase library of repeats from the Genetic 
+#    # Information Research Institute (GIRI). RepBase is described in Jurka, J. 
+#    # (2000) in the References section below."
+#    class RepeatMasker < DBConnection
+#      include Ucsc::Hg18::Feature
+#      
+#      set_table_name 'rmsk'
+#      set_primary_key nil
+#    end
+
+    # = DESCRIPTION
+    # From Interrupted Repeat description page when clicking the "Describe 
+    # table schema" in the table browser:
+    # "This track shows joined fragments of interrupted repeats extracted from 
+    # the output of the RepeatMasker program, which screens DNA sequences for 
+    # interspersed repeats and low complexity DNA sequences using the RepBase 
+    # library of repeats from the Genetic Information Research Institute (GIRI). 
+    # RepBase is described in Jurka, J. (2000) in the References section below.
+    #
+    # The detailed annotations from RepeatMasker are in the RepeatMasker track. 
+    # This track shows fragments of original repeat insertions which have been 
+    # interrupted by insertions of younger repeats or through local 
+    # rearrangements. The fragments are joined using the ID column of 
+    # RepeatMasker output."
+    class InterruptedRepeat < DBConnection
+      include Ucsc::Hg18::Feature
+      
+      set_table_name 'nestedRepeats'
+      set_primary_key nil
+    end
+    
+    # = DESCRIPTION
+    # From Microsatellite description page when clicking the "Describe 
+    # table schema" in the table browser:
+    # "This track displays regions that are likely to be useful as 
+    # microsatellite markers. These are sequences of at least 15 perfect 
+    # di-nucleotide and tri-nucleotide repeats, and tend to be highly 
+    # polymorphic in the population."
+    class Microsatellite < DBConnection
+      include Ucsc::Hg18::Feature
+      
+      set_table_name 'microsat'
+      set_primary_key nil
+    end
+
   end
 end
