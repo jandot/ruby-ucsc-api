@@ -74,9 +74,9 @@ module Ucsc
     end
     
     # = DESCRIPTION
-    # The Cnp mixin holds common methods for all CNP-like classes, such as
-    # how to print itself to the screen.
-    module Cnp
+    # The Feature mixin holds common methods for all feature-like classes, such 
+    # as how to print itself to the screen.
+    module Feature
       include Sliceable
       
       def to_s
@@ -92,7 +92,7 @@ module Ucsc
     # consisting of 2,632 BAC clones (Spectral Genomics, Houston, TX). The 
     # false positive rate was estimated at ~1 clone per 5,264 tested."
     class CnpIafrate < DBConnection
-      include Cnp
+      include Ucsc::Hg18::Feature
       
       set_table_name 'cnpIafrate2'
       set_primary_key nil
@@ -111,7 +111,7 @@ module Ucsc
     # experiments. A CNV was classified as a CNP if altered copy number was 
     # observed in more than 1% of the 269 individuals."
     class CnpLocke < DBConnection
-      include Cnp
+      include Ucsc::Hg18::Feature
       
       set_table_name 'cnpLocke'
       set_primary_key nil
@@ -126,7 +126,7 @@ module Ucsc
     # access arrays (500K EA) and comparative genomic hybridization with a 
     # Whole Genome TilePath (WGTP) array."
     class CnpRedon < DBConnection
-      include Cnp
+      include Ucsc::Hg18::Feature
       
       set_table_name 'cnpRedon'
       set_primary_key nil
@@ -144,7 +144,7 @@ module Ucsc
     # in duplicate incorporating a dye-reversal, with the false positive rate 
     # estimated to be ~6%."
     class CnpSebat < DBConnection
-      include Cnp
+      include Ucsc::Hg18::Feature
       
       set_table_name 'cnpSebat2'
       set_primary_key nil
@@ -159,7 +159,7 @@ module Ucsc
     # segmental duplications. The false positive rate was estimated at ~3 
     # clones per 4,000 tested."
     class CnpSharp < DBConnection
-      include Cnp
+      include Ucsc::Hg18::Feature
       
       set_table_name 'cnpSharp2'
       set_primary_key nil
@@ -174,7 +174,7 @@ module Ucsc
     # However, because of the physical constraints of fosmid insert size, this 
     # technique was unable to detect insertions greater than 40 kb in size."
     class CnpTuzun < DBConnection
-      include Cnp
+      include Ucsc::Hg18::Feature
       
       set_table_name 'cnpTuzun'
       set_primary_key nil
@@ -185,7 +185,7 @@ module Ucsc
     # table schema" in the table browser:
     # ""
     class Dgv < DBConnection
-      include Cnp
+      include Ucsc::Hg18::Feature
       
       set_table_name 'dgv'
       set_primary_key nil

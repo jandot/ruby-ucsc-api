@@ -53,13 +53,13 @@ end
 
 class MixinsTest < Test::Unit::TestCase
   def test_cnp
-    assert_equal(true, CnpIafrate.include?(Cnp))
-    assert_equal(true, CnpLocke.include?(Cnp))
-    assert_equal(true, CnpRedon.include?(Cnp))
-    assert_equal(true, CnpSebat.include?(Cnp))
-    assert_equal(true, CnpSharp.include?(Cnp))
-    assert_equal(true, CnpTuzun.include?(Cnp))
-    assert_equal(true, Dgv.include?(Cnp))
+    assert_equal(true, CnpIafrate.include?(Feature))
+    assert_equal(true, CnpLocke.include?(Feature))
+    assert_equal(true, CnpRedon.include?(Feature))
+    assert_equal(true, CnpSebat.include?(Feature))
+    assert_equal(true, CnpSharp.include?(Feature))
+    assert_equal(true, CnpTuzun.include?(Feature))
+    assert_equal(true, Dgv.include?(Feature))
   end
   
   def test_sliceable
