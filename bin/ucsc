@@ -1,1 +1,2 @@
-irb -r ucsc
+#!/usr/bin/ruby
+system("irb -r ucsc")

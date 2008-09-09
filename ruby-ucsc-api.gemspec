@@ -17,6 +17,11 @@ spec = Gem::Specification.new do |s|
   s.add_dependency('activerecord')
 
   s.require_path = 'lib'
+  s.autorequire = 'ucsc'
+  
+  s.bindir = "bin"
+  s.executables = ["ucsc"]
+  s.default_executable = "ucsc"
 end
 
 if $0 == __FILE__
