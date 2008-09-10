@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--exclude ."]
 
   s.platform = Gem::Platform::RUBY
-  s.files = ["lib/ucsc/db_connection.rb","lib/ucsc/hg18/activerecord.rb","lib/ucsc/hg18/slice.rb","lib/ucsc.rb","samples/tryout.rb","test/unit/test_activerecord.rb"]
+  s.files = ["bin/ucsc","lib/ucsc/db_connection.rb","lib/ucsc/hg18/activerecord.rb","lib/ucsc/hg18/slice.rb","lib/ucsc.rb","samples/ranges.txt","samples/tryout.rb","test/unit/test_activerecord.rb"]
 
   s.test_files = ["test/unit/test_activerecord.rb"]
 

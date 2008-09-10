@@ -18,9 +18,9 @@ task :rebuild_gemspec do
   outfile.puts '  s.platform = Gem::Platform::RUBY'
   
   
-  outfile.puts '  s.files = ["' + Dir.glob("{lib,samples,test}/**/*.rb").join("\",\"") + '"]'
+  outfile.puts '  s.files = ["' + FileList.new("bin/*", "lib/**/*.rb", "samples/**/*", "test/**/*.rb").join("\",\"") + '"]'
   outfile.puts ''
-  outfile.puts '  s.test_files = ["' + Dir.glob("test/**/test_*.rb").join("\",\"") + '"]'
+  outfile.puts '  s.test_files = ["' + FileList.new("test/**/test_*.rb").join("\",\"") + '"]'
   outfile.puts ''
   outfile.puts ''
   outfile.puts '  s.add_dependency("bio", [">=1"])'
