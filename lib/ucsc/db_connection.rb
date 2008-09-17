@@ -1,12 +1,13 @@
 require 'rubygems'
 require 'activerecord'
 
-DB_ADAPTER = 'mysql'
-DB_HOST = 'genome-mysql.cse.ucsc.edu'
-DB_USERNAME = 'genome'
-DB_PASSWORD = ''
 
 module Ucsc
+  DB_ADAPTER = 'mysql'
+  DB_HOST = 'genome-mysql.cse.ucsc.edu'
+  DB_USERNAME = 'genome'
+  DB_PASSWORD = ''
+
   module Hg18
     # = DESCRIPTION
     # The Ucsc::Hg18::DBConnection is the actual connection established
@@ -26,11 +27,11 @@ module Ucsc
       # *Arguments*: none
       def self.connect
         establish_connection(
-                            :adapter => DB_ADAPTER,
-                            :host => DB_HOST,
+                            :adapter => Ucsc::DB_ADAPTER,
+                            :host => Ucsc::DB_HOST,
                             :database => 'hg18',
-                            :username => DB_USERNAME,
-                            :password => DB_PASSWORD
+                            :username => Ucsc::DB_USERNAME,
+                            :password => Ucsc::DB_PASSWORD
                             )
         end
 

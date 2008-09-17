@@ -57,7 +57,7 @@ class SimpleRecordsTest < Test::Unit::TestCase
   def test_exapted_repeat
     assert_equal(3180908, ExaptedRepeat.find_by_name('exap1').chromStart)
   end
-  
+
 #  def test_repeatmasker
 #    
 #  end

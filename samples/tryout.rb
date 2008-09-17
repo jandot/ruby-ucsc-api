@@ -16,11 +16,11 @@ end
 ranges.keys.each do |chromosome|
   all_annotations = Array.new
 
-  ALL_CNPS.each do |klass|
+  Ucsc::ALL_CNPS.each do |klass|
     all_annotations.push(klass.find_all_by_chrom(chromosome))
   end
 
-  ALL_REPEATS.each do |klass|
+  Ucsc::ALL_REPEATS.each do |klass|
     all_annotations.push(klass.find_all_by_chrom(chromosome))
   end
   
