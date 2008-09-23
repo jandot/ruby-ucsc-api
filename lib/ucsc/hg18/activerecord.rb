@@ -1,3 +1,10 @@
+def overlap_sql(slice, start, stop)
+  ' WHERE chrom = "' + slice.chromosome +
+  '" AND ((chromStart BETWEEN ' + start.to_s + ' AND ' + stop.to_s + ')' +
+  '    OR (chromEnd BETWEEN ' + start.to_s + ' AND ' + stop.to_s + ')' +
+  '    OR (chromStart <= ' + start.to_s + ' AND chromEnd >= ' + stop.to_s + ')' +
+  '      );'
+end
 #
 # = ucsc/hg18/activerecord.rb - ActiveRecord mappings to UCSC hg18 database
 #
@@ -82,6 +89,7 @@ module Ucsc
       def to_s
         return self.class.to_s + "\t" + self.slice.to_s + "\t" + self.name
       end
+
     end
     
     # = DESCRIPTION
@@ -96,6 +104,12 @@ module Ucsc
       
       set_table_name 'cnpIafrate2'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return CnpIafrate.find_by_sql('SELECT * FROM cnpIafrate' + overlap_sql(slice, start, stop))
+      end
     end
 
     # = DESCRIPTION
@@ -115,6 +129,12 @@ module Ucsc
       
       set_table_name 'cnpLocke'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return CnpLocke.find_by_sql('SELECT * FROM cnpLocke' + overlap_sql(slice, start, stop))
+      end
     end
 
     # = DESCRIPTION
@@ -130,6 +150,12 @@ module Ucsc
       
       set_table_name 'cnpRedon'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return CnpRedon.find_by_sql('SELECT * FROM cnpRedon' + overlap_sql(slice, start, stop))
+      end
     end
 
     # = DESCRIPTION
@@ -148,6 +174,12 @@ module Ucsc
       
       set_table_name 'cnpSebat2'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return CnpSebat.find_by_sql('SELECT * FROM cnpSebat2' + overlap_sql(slice, start, stop))
+      end
     end
 
     # = DESCRIPTION
@@ -163,6 +195,12 @@ module Ucsc
       
       set_table_name 'cnpSharp2'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return CnpSharp.find_by_sql('SELECT * FROM cnpSharp2' + overlap_sql(slice, start, stop))
+      end
     end
 
     # = DESCRIPTION
@@ -178,6 +216,12 @@ module Ucsc
       
       set_table_name 'cnpTuzun'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return CnpTuzun.find_by_sql('SELECT * FROM cnpTuzun' + overlap_sql(slice, start, stop))
+      end
     end
     
     # = DESCRIPTION
@@ -192,6 +236,12 @@ module Ucsc
       
       def to_s
         return self.class.to_s + "\t" + self.slice.to_s + "\t" + self.reference + "\t" + self.method
+      end
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return Dgv.find_by_sql('SELECT * FROM dgv' + overlap_sql(slice, start, stop))
       end
     end
     
@@ -209,6 +259,12 @@ module Ucsc
       
       set_table_name 'simpleRepeat'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return SimpleRepeat.find_by_sql('SELECT * FROM simpleRepeat' + overlap_sql(slice, start, stop))
+      end
     end
     
     # = DESCRIPTION
@@ -230,6 +286,12 @@ module Ucsc
       
       set_table_name 'genomicSuperDups'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return GenomicSuperDup.find_by_sql('SELECT * FROM genomicSuperDups' + overlap_sql(slice, start, stop))
+      end
     end
     
     # = DESCRIPTION
@@ -247,6 +309,12 @@ module Ucsc
       
       set_table_name 'exaptedRepeats'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return ExaptedRepeat.find_by_sql('SELECT * FROM exaptedRepeats' + overlap_sql(slice, start, stop))
+      end
     end
 
 #TODO: The repeatmasker features are distributed over different tables; one for
@@ -288,6 +356,12 @@ module Ucsc
       
       set_table_name 'nestedRepeats'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return InterruptedRepeat.find_by_sql('SELECT * FROM nestedRepeats' + overlap_sql(slice, start, stop))
+      end
     end
     
     # = DESCRIPTION
@@ -302,6 +376,12 @@ module Ucsc
       
       set_table_name 'microsat'
       set_primary_key nil
+      
+      def self.find_by_slice(slice)
+        start = slice.range.begin
+        stop = slice.range.end
+        return Microsatellite.find_by_sql('SELECT * FROM microsat' + overlap_sql(slice, start, stop))
+      end
     end
 
   end

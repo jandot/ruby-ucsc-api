@@ -69,6 +69,11 @@ class SimpleRecordsTest < Test::Unit::TestCase
   def test_microsatellite
     assert_equal('16xGT', Microsatellite.find_by_chrom_and_chromStart('chr1', 40344).name)
   end
+  
+  def test_by_sql
+    slice = Slice.new('chrX', (1..500000))
+    assert_equal(425, SimpleRepeat.find_by_slice(slice).length)
+  end
 end
 
 class MixinsTest < Test::Unit::TestCase
