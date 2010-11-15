@@ -14,7 +14,7 @@ class Range
     end
   end
   
-  def overlaps_with?(other_range)
+  def overlaps?(other_range)
     if ((self.begin >= other_range.begin and self.begin <= other_range.end) or (other_range.begin >= self.begin and other_range.begin <= self.end))
       return true
     else
